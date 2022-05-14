@@ -1,73 +1,138 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-import styles from '@/styles/Home.module.css';
+import { Header } from '@/components/Header';
+import { useScroll } from '@/hooks/useScroll';
+
+import { MdScreenshot } from 'react-icons/md';
+import { IoIosSwitch } from 'react-icons/io';
+import { GiPayMoney } from 'react-icons/gi';
+import { FcGoogle } from 'react-icons/fc';
+
+import { Container, CardBody } from '@/styles/pages/home';
+import { useTheme } from 'styled-components';
+import Image from 'next/image';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>TypeScript starter for Next.js</title>
-        <meta
-          name="description"
-          content="TypeScript starter for Next.js that includes all you need to build amazing apps"
+  const { scrollY } = useScroll();
+  const [animated, setAnimated] = useState(true);
+  const { colors } = useTheme();
+
+  const features = [
+    {
+      id: `1`,
+      title: `100% Responsivo`,
+      description: `Editar e personalizar de forma rápida.`,
+      icon: MdScreenshot,
+    },
+    {
+      id: `2`,
+      title: `Theme Switcher`,
+      description: `Se você preferir o escurinho, não tem problema.`,
+      icon: IoIosSwitch,
+    },
+    {
+      id: `3`,
+      title: `100% Gratuito`,
+      description: `Pode utilizar a vontade, é de graça!`,
+      icon: GiPayMoney,
+    },
+  ];
+
+  useEffect(() => {
+    setAnimated(false);
+  }, []);
+
+  const Card = () => (
+    <CardBody>
+      <p className="comment">
+        “You made it so simple. My new site is so much faster and easier to work
+        with than my old site. I just choose the page, make the change and click
+        save.
+      </p>
+      <div className="footer">
+        <Image
+          src="https://github.com/valcineijr.png"
+          width={43}
+          height={43}
+          alt=""
         />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{` `}
-          <code className={styles.code}>src/pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="user-info">
+          <h5>Valcinei Jr</h5>
+          <span>Programador</span>
         </div>
-      </main>
+      </div>
+    </CardBody>
+  );
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=typescript-nextjs-starter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{` `}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+  return (
+    <>
+      <Header />
+      <Container scroll={scrollY} animated={animated} setAnimated={setAnimated}>
+        <section className="intro">
+          <h6>Apresente seus trabalhos</h6>
+          <h1>Faça seu portifólio de forma rápida e fácil.</h1>
+          <p>Seu novo jeito de construir portfólios.</p>
+          <p className="rating-text">Utilizado por 2 usuários</p>
+        </section>
+
+        <section className="features">
+          {features.map((item) => (
+            <div key={item.id} className="box">
+              <item.icon color={colors.primary} size={34} />
+              <div className="info">
+                <h3 className="title">{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <section className="show-case">
+          <div className="wrapper">
+            <div className="image">
+              <Image
+                width={600}
+                height={600}
+                placeholder="blur"
+                blurDataURL="https://media.giphy.com/media/Dh5q0sShxgp13DwrvG/giphy.gif"
+                src="https://media.giphy.com/media/Dh5q0sShxgp13DwrvG/giphy.gif"
+                alt=""
+              />
+            </div>
+
+            <div className="information">
+              <h6>Design é tudo</h6>
+              <h2>Apresente seu portifólio dessa forma.</h2>
+              <p>Projetado para facilitar a criação de um portifólio.</p>
+              <p>Quem pode usar? Qualquer um mesmo, basta criar sua conta.</p>
+
+              <button>
+                <FcGoogle size={30} /> Entrar com gmail
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="feedbacks">
+          <div className="description">
+            <h6>Feedbacks</h6>
+            <h1>Mais de 2 usuários comentaram.</h1>
+            <p>
+              Alguns comentários de nossas comunidade e o que eles acharam da
+              experiência.
+            </p>
+          </div>
+
+          <div className="grid">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
+        </section>
+        <Footer />
+      </Container>
+    </>
   );
 }

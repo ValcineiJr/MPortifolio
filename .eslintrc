@@ -36,12 +36,14 @@
       "plugins": ["@typescript-eslint/eslint-plugin"],
       "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
       "rules": {
+        "import/no-anonymous-default-export": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "no-use-before-define": [0],
         "@typescript-eslint/no-use-before-define": [1],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
+        "react/prop-types": "off",
         "@typescript-eslint/quotes": [
           2,
           "backtick",
