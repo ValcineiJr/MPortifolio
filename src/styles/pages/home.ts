@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-  scroll: number;
   animated: boolean;
   setAnimated: any;
 }
@@ -9,17 +8,18 @@ interface ContainerProps {
 export const Container = styled.main<ContainerProps>`
   @keyframes showIn {
     from {
-      transform: translateX(-10%);
+      transform: translateY(-50%);
       opacity: 0;
     }
 
     to {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
     }
   }
 
   overflow-x: hidden;
+  z-index: 10;
   padding-top: 200px;
   background-color: ${({ theme }) => theme.colors.background};
 
@@ -76,22 +76,7 @@ export const Container = styled.main<ContainerProps>`
     max-width: 1400px;
     margin: 0 auto;
 
-    transition: all 1s;
-
-    transform: translateX(-10%);
-    opacity: 0;
-
     margin-bottom: 100px;
-
-    ${({ scroll }) => {
-      if (scroll >= 20) {
-        return css`
-          transform: translateX(0);
-          opacity: 1;
-        `;
-      }
-      return ``;
-    }}
 
     .box {
       display: flex;
@@ -156,9 +141,6 @@ export const Container = styled.main<ContainerProps>`
       width: 100%;
       transition: all 0.4s;
 
-      transform: translateX(-10%);
-      opacity: 0;
-
       display: flex;
       justify-content: center;
 
@@ -166,32 +148,6 @@ export const Container = styled.main<ContainerProps>`
         width: 100% !important;
         width: 100%;
       }
-
-      ${({ scroll }) => {
-        if (scroll >= 400) {
-          return css`
-            transform: translateX(0);
-            opacity: 1;
-          `;
-        }
-        return ``;
-      }}
-    }
-
-    .information {
-      transition: all 0.4s;
-      transform: translateX(10%);
-      opacity: 0;
-
-      ${({ scroll }) => {
-        if (scroll >= 500) {
-          return css`
-            transform: translateX(0);
-            opacity: 1;
-          `;
-        }
-        return ``;
-      }}
     }
 
     h6 {
@@ -272,20 +228,6 @@ export const Container = styled.main<ContainerProps>`
         font-size: 1.8rem;
         color: ${({ theme }) => theme.colors.simple_text};
       }
-      transition: 1s;
-
-      transform: translateX(10%);
-      opacity: 0;
-
-      ${({ scroll }) => {
-        if (scroll >= 1200) {
-          return css`
-            transform: translateX(0);
-            opacity: 1;
-          `;
-        }
-        return ``;
-      }}
     }
 
     .grid {
@@ -294,21 +236,6 @@ export const Container = styled.main<ContainerProps>`
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
       grid-gap: 20px;
-
-      transform: translateX(-10%);
-      opacity: 0;
-
-      transition: 1s;
-
-      ${({ scroll }) => {
-        if (scroll >= 1400) {
-          return css`
-            transform: translateX(0);
-            opacity: 1;
-          `;
-        }
-        return ``;
-      }}
     }
   }
 `;

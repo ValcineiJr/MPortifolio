@@ -16,6 +16,8 @@ export const Container = styled.footer`
     display: flex;
     align-items: flex-start;
 
+    padding-bottom: 20px;
+
     gap: 20px;
 
     @media (max-width: 900px) {
@@ -64,6 +66,47 @@ export const Container = styled.footer`
       p {
         font-size: 1.8rem;
         color: #737373;
+      }
+    }
+  }
+
+  .sub-footer {
+    border-top: 1px solid #bbb;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 80%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    font-size: 1.8rem;
+    color: #737373;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    ul {
+      display: flex;
+      gap: 10px;
+    }
+
+    .icons {
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #33353d;
+
+        border-radius: 2rem;
+
+        width: 4rem;
+        height: 4rem;
       }
     }
   }

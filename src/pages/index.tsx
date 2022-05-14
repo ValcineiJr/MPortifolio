@@ -14,7 +14,7 @@ import Image from 'next/image';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
-  const { scrollY } = useScroll();
+  useScroll();
   const [animated, setAnimated] = useState(true);
   const { colors } = useTheme();
 
@@ -68,15 +68,15 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Container scroll={scrollY} animated={animated} setAnimated={setAnimated}>
-        <section className="intro">
+      <Container animated={animated} setAnimated={setAnimated}>
+        <section className="intro ">
           <h6>Apresente seus trabalhos</h6>
           <h1>Faça seu portifólio de forma rápida e fácil.</h1>
           <p>Seu novo jeito de construir portfólios.</p>
           <p className="rating-text">Utilizado por 2 usuários</p>
         </section>
 
-        <section className="features">
+        <section className="features reveal fade-left">
           {features.map((item) => (
             <div key={item.id} className="box">
               <item.icon color={colors.primary} size={34} />
@@ -90,7 +90,7 @@ export default function Home() {
 
         <section className="show-case">
           <div className="wrapper">
-            <div className="image">
+            <div className="image reveal fade-left">
               <Image
                 width={600}
                 height={600}
@@ -101,7 +101,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="information">
+            <div className="information reveal fade-right">
               <h6>Design é tudo</h6>
               <h2>Apresente seu portifólio dessa forma.</h2>
               <p>Projetado para facilitar a criação de um portifólio.</p>
@@ -114,8 +114,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="feedbacks">
-          <div className="description">
+        <section className="feedbacks ">
+          <div className="description reveal fade-bottom">
             <h6>Feedbacks</h6>
             <h1>Mais de 2 usuários comentaram.</h1>
             <p>
@@ -124,7 +124,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid">
+          <div className="grid reveal fade-bottom">
             <Card />
             <Card />
             <Card />

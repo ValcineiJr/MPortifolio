@@ -2,6 +2,70 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
+@keyframes fade-bottom {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-top {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-left {
+  from{
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-right {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.reveal {
+  transition: 0.6s;
+  opacity: 0;
+}
+
+.reveal.active {
+  opacity: 1;
+}
+
+.active.fade-bottom {
+  animation: fade-bottom .6s ease-in;
+}
+.active.fade-left {
+  animation: fade-left .6s ease-in;
+}
+.active.fade-right {
+  animation: fade-right .6s ease-in;
+}
+.active.fade-top {
+  animation: fade-top .6s ease-in;
+}
+
  html {
   box-sizing: border-box;
   font-size: 62.5%;
